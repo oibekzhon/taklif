@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="uz" id="html-root-gen">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uchrashuv Sayti Generatori 🛠️</title>
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0B0F19;
+            --card-bg: #151B2C;
+            --primary: #2563EB;
+            --primary-hover: #1D4ED8;
+            --accent: #10B981;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --border-color: #242F47;
+            --radius: 16px;
+            --font-main: 'Plus Jakarta Sans', system-ui, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            padding: 2.5rem 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 520px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 span {
+            color: var(--primary);
+        }
+
+        .instruction-box {
+            background: #1E2640;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .step-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--text-main);
+        }
+
+        .step-desc {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .step-desc a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary);
+        }
+
+        .step-desc a:hover {
+            color: #60A5FA;
+        }
+
+        .step-desc code {
+            background: #0B0F19;
+            padding: 0.2rem 0.4rem;
+            border-radius: 6px;
+            font-family: monospace;
+            color: #F43F5E;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.9rem 1.1rem;
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: #0B0F19;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 243, 0.15);
+        }
+
+        input::placeholder {
+            color: #4B5563;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .result-box {
+            margin-top: 1.8rem;
+            background: #064E3B;
+            border: 1.5px solid var(--accent);
+            padding: 1.4rem;
+            border-radius: 12px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-title {
+            color: #A7F3D0;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .url-display {
+            font-size: 0.85rem;
+            word-break: break-all;
+            background: #0B0F19;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid #047857;
+            margin-bottom: 1rem;
+            color: #34D399;
+            user-select: all;
+        }
+
+        .btn-success {
+            background: var(--accent);
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        /* === Til tanlash === */
+        .lang-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.6rem;
+        }
+
+        .lang-card {
+            border: 1.5px solid var(--border-color);
+            border-radius: 10px;
+            padding: 0.8rem 0.4rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.18s ease;
+            background: #0B0F19;
+        }
+
+        .lang-card:hover {
+            border-color: var(--primary);
+        }
+
+        .lang-card.selected {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.15);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .lang-flag {
+            font-size: 1.6rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .lang-name {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+    </style>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Uchrashuv Sayti Generatori 🛠️" />
+    <meta property="og:description" content="🤖 Bot yaratib Token olish va 🆔 Telegram ID aniqlash" />
+    <meta name="twitter:description" content="" />
+    <meta property="og:url" content="https://oibekzhon.github.io/telegramm/index.html" />
+    <meta property="og:image" content="https://i.ibb.co/hxrgqpFT/yigit.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Uchrashuv Sayti Generatori 🛠️" />
+    <meta property="og:description" content="🤖 Bot yaratib Token olish va 🆔 Telegram ID aniqlash" />
+    <meta name="twitter:image" content="https://i.ibb.co/hxrgqpFT/yigit.jpg" />
+
+</head>
+
+<body>
+
+    <div class="container">
+        <h1><span data-lang-gen="gen_title_1">Havola</span> <span data-lang-gen="gen_title_2">Generatori</span> ⚙️</h1>
+
+        <div class="instruction-box">
+            <div class="step-title" data-lang-gen="gen_step1_title">🤖 1. Bot yaratish va Token olish</div>
+            <div class="step-desc" data-lang-gen="gen_step1_desc">
+                Telegramda <a href="https://t.me/BotFather" target="_blank">@BotFather</a> ga kiring.
+                <code>/newbot</code> yuborib, bot oching.
+                Berilgan <strong>HTTP API Token</strong>ni nusxalang.<br>
+                <i>⚠️ Muhim: Ochgan botingizga kirib <b>/start</b> bosib qo'ying!</i>
+            </div>
+        </div>
+
+        <div class="instruction-box">
+            <div class="step-title" data-lang-gen="gen_step2_title">🆔 2. Telegram ID aniqlash</div>
+            <div class="step-desc" data-lang-gen="gen_step2_desc">
+                Telegramda <a href="https://t.me/userinfobot" target="_blank">@userinfobot</a> ga kiring.
+                Bot qaytargan raqamli <strong>Id</strong>ni nusxalang.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-lang-gen="gen_token_label">Bot Token (HTTP API)</label>
+            <input type="text" id="bot-token" data-lang-gen-placeholder="gen_token_placeholder"
+                placeholder="Masalan: 8921578186:AAG9si120ac...">
+        </div>
+
+        <div class="form-group">
+            <label data-lang-gen="gen_chatid_label">Sizning Telegram ID raqamingiz</label>
+            <input type="text" id="chat-id" data-lang-gen-placeholder="gen_chatid_placeholder"
+                placeholder="Masalan: 6541217455">
+        </div>
+
+        <div class="form-group">
+            <label data-lang-gen="gen_lang_label">🌐 Qizga qaysi tilda ko'rsatamiz?</label>
+            <div class="lang-grid" id="lang-grid">
+                <div class="lang-card selected" data-lang="uz" onclick="selectLang(this, 'uz')">
+                    <span class="lang-flag">🇺🇿</span>
+                    <span class="lang-name">O'zbek</span>
+                </div>
+                <div class="lang-card" data-lang="ru" onclick="selectLang(this, 'ru')">
+                    <span class="lang-flag">🇷🇺</span>
+                    <span class="lang-name">Русский</span>
+                </div>
+                <div class="lang-card" data-lang="en" onclick="selectLang(this, 'en')">
+                    <span class="lang-flag">🇬🇧</span>
+                    <span class="lang-name">English</span>
+                </div>
+                <div class="lang-card" data-lang="kz" onclick="selectLang(this, 'kz')">
+                    <span class="lang-flag">🇰🇿</span>
+                    <span class="lang-name">Қазақша</span>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn" data-lang-gen="gen_btn_generate" onclick="generateLink()">Maxsus havola yaratish ⚡</button>
+
+        <div class="result-box" id="result-div">
+            <div class="result-title" data-lang-gen="gen_result_title">✅ Tizim tayyor!</div>
+            <p style="font-size: 0.88rem; margin-bottom: 0.6rem; color: #D1FAE5;" data-lang-gen="gen_result_desc">
+                Quyidagi maxsus havolani nusxalab, qizga yuboring:</p>
+            <div class="url-display" id="url-text"></div>
+            <button class="btn-success btn" data-lang-gen="gen_btn_copy" onclick="copyLink()">Havolani nusxalash
+                📋</button>
+        </div>
+    </div>
+
+    <script src="lang.js?v=2"></script>
+    <script>
+        let selectedLang = 'uz';
+
+        function selectLang(el, code) {
+            document.querySelectorAll('.lang-card').forEach(c => c.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedLang = code;
+            applyGenTranslations(selectedLang);
+
+            const langMap = { uz: 'uz', ru: 'ru', en: 'en', kz: 'kk' };
+            document.getElementById('html-root-gen').setAttribute('lang', langMap[code] || 'uz');
+        }
+
+        function generateLink() {
+            const token = document.getElementById('bot-token').value.trim();
+            const id = document.getElementById('chat-id').value.trim();
+
+            if (!token || !id) {
+                const dict = GEN_TRANSLATIONS[selectedLang] || GEN_TRANSLATIONS.uz;
+                alert(dict.gen_alert_fill_all);
+                return;
+            }
+
+            // GitHub Pages da pathname /repo/ yoki /repo/index.html shaklida keladi
+            const pathBase = window.location.pathname.replace(/\/index\.html$/, '/').replace(/\/?$/, '/');
+            const baseSite = window.location.origin + pathBase + 'qiz.html';
+
+            const encodedToken = btoa(token);
+            const encodedId = btoa(id);
+            const finalUrl = `${baseSite}?bt=${encodedToken}&ci=${encodedId}&lang=${selectedLang}`;
+
+            document.getElementById('url-text').textContent = finalUrl;
+            document.getElementById('result-div').style.display = 'block';
+        }
+
+        function copyLink() {
+            const linkText = document.getElementById('url-text').textContent;
+            navigator.clipboard.writeText(linkText).then(() => {
+                const dict = GEN_TRANSLATIONS[selectedLang] || GEN_TRANSLATIONS.uz;
+                alert(dict.gen_alert_copied);
+            });
+        }
+    </script>
+
+</body>
+
+</html>

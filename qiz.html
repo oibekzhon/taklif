@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="uz" id="html-root">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Maxsus Taklif 💌</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sizga maxsus bir taklif bor 💌" />
+    <meta property="og:description" content="Bu sahifa faqat siz uchun yaratildi. Davom eting va oching ✨" />
+    <meta property="og:url" content="https://oibekzhon.github.io/telegramm/index.html" />
+    <meta property="og:image" content="https://i.ibb.co/Y4rVs88s/alish.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sizga maxsus bir taklif bor 💌" />
+    <meta name="twitter:description" content="Bu sahifa faqat siz uchun yaratildi. Davom eting va oching ✨" />
+    <meta name="twitter:image" content="https://i.ibb.co/Y4rVs88s/alish.jpg" />
+
+</head>
+
+<body>
+
+    <section id="step-hero" class="step active">
+        <div class="petals-bg"></div>
+        <div class="hero-content">
+            <div class="envelope-icon">💌</div>
+            <h1 class="hero-title" data-lang="hero_title">Sizga maxsus<br><em>bir taklif bor</em></h1>
+            <p class="hero-sub" data-lang="hero_sub">Bu sahifa faqat siz uchun yaratildi. Davom eting...</p>
+            <button class="btn-primary" data-lang="hero_btn" onclick="goStep('step-datetime')">Ochish ✨</button>
+        </div>
+    </section>
+
+    <section id="step-datetime" class="step">
+        <div class="card">
+            <div class="step-label" data-lang="step1_label">01 / 05</div>
+            <h2 data-lang="step1_title">Qachon uchrashsak?</h2>
+            <p class="step-desc" data-lang="step1_desc">O'zingizga qulay kun va vaqtni tanlang</p>
+            <div class="form-group">
+                <label data-lang="step1_date_label">📅 Sana</label>
+                <input type="date" id="date-input" min="" />
+            </div>
+            <div class="form-group">
+                <label data-lang="step1_time_label">⏰ Vaqt</label>
+                <input type="time" id="time-input" value="18:00" />
+            </div>
+            <button class="btn-primary" data-lang="btn_continue" onclick="nextFromDatetime()">Davom etish →</button>
+        </div>
+    </section>
+
+    <section id="step-location" class="step">
+        <div class="card">
+            <div class="step-label" data-lang="step2_label">02 / 05</div>
+            <h2 data-lang="step2_title">Qayerda uchrashsak?</h2>
+            <p class="step-desc" data-lang="step2_desc">Ko'nglingizga yoqqanini tanlang</p>
+            <div class="location-grid">
+                <div class="loc-card" data-loc="cafe" onclick="selectLocation(this, 'cafe')">
+                    <div class="loc-icon">☕</div>
+                    <div class="loc-name" data-lang="loc_cafe_name">Shinam qahvaxona</div>
+                    <div class="loc-desc" data-lang="loc_cafe_desc">Iliq muhit, aromatik kofe</div>
+                </div>
+                <div class="loc-card" data-loc="park" onclick="selectLocation(this, 'park')">
+                    <div class="loc-icon">🌿</div>
+                    <div class="loc-name" data-lang="loc_park_name">Istirohat bog'i</div>
+                    <div class="loc-desc" data-lang="loc_park_desc">Toza havo, tabiat qo'ynida</div>
+                </div>
+                <div class="loc-card" data-loc="cinema" onclick="selectLocation(this, 'cinema')">
+                    <div class="loc-icon">🎬</div>
+                    <div class="loc-name" data-lang="loc_cinema_name">Kino tomosha</div>
+                    <div class="loc-desc" data-lang="loc_cinema_desc">Yoqimli film, qorong'i zal</div>
+                </div>
+                <div class="loc-card" data-loc="restaurant" onclick="selectLocation(this, 'restaurant')">
+                    <div class="loc-icon">🍽️</div>
+                    <div class="loc-name" data-lang="loc_restaurant_name">Restoran kechkisi</div>
+                    <div class="loc-desc" data-lang="loc_restaurant_desc">Chiroyli dasturxon, mazza</div>
+                </div>
+            </div>
+            <button class="btn-primary" id="loc-btn" data-lang="btn_continue" disabled onclick="goStep('step-questions')">Davom etish →</button>
+        </div>
+    </section>
+
+    <section id="step-questions" class="step">
+        <div class="card wide">
+            <div class="step-label" data-lang="step3_label">03 / 05</div>
+            <h2 data-lang="step3_title">Siz haqingizda biroz...</h2>
+            <p class="step-desc" data-lang="step3_desc">Uchrashuvni siz uchun mukammal qilmoqchiman 🌸</p>
+
+            <div class="question-block">
+                <p class="q-text" data-lang="q_drink_text">☕ Uchrashuvda qaysi ichimlikni afzal ko'rasiz?</p>
+                <div class="options-row">
+                    <button class="opt-btn" data-val="drink_coffee" data-lang="opt_drink_coffee" onclick="selectOpt(this, 'drink')">Kofe ☕</button>
+                    <button class="opt-btn" data-val="drink_tea" data-lang="opt_drink_tea" onclick="selectOpt(this, 'drink')">Choy 🫖</button>
+                    <button class="opt-btn" data-val="drink_cocktail" data-lang="opt_drink_cocktail" onclick="selectOpt(this, 'drink')">Kokteyl 🍹</button>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <p class="q-text" data-lang="q_sweet_text">🍰 Shirinlik buyurtma qilsak, qaysi biri?</p>
+                <div class="options-row">
+                    <button class="opt-btn" data-val="sweet_cake" data-lang="opt_sweet_cake" onclick="selectOpt(this, 'sweet')">Shokoladli tort 🍰</button>
+                    <button class="opt-btn" data-val="sweet_icecream" data-lang="opt_sweet_icecream" onclick="selectOpt(this, 'sweet')">Muzqaymoq 🍦</button>
+                    <button class="opt-btn" data-val="sweet_fruit" data-lang="opt_sweet_fruit" onclick="selectOpt(this, 'sweet')">Mevali desert 🍓</button>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <p class="q-text" data-lang="q_flower_text">🌹 Qaysi rangdagi gullar ko'proq yoqadi?</p>
+                <div class="options-row">
+                    <button class="opt-btn" data-val="flower_red" data-lang="opt_flower_red" onclick="selectOpt(this, 'flower')">Qizil 🌹</button>
+                    <button class="opt-btn" data-val="flower_pink" data-lang="opt_flower_pink" onclick="selectOpt(this, 'flower')">Pushti 🌸</button>
+                    <button class="opt-btn" data-val="flower_white" data-lang="opt_flower_white" onclick="selectOpt(this, 'flower')">Oq 🤍</button>
+                    <button class="opt-btn" data-val="flower_yellow" data-lang="opt_flower_yellow" onclick="selectOpt(this, 'flower')">Sariq 🌻</button>
+                </div>
+            </div>
+
+            <div class="question-block">
+                <p class="q-text" data-lang="q_music_text">🎵 Qanday musiqa eshitishni xohlaysiz?</p>
+                <div class="options-row">
+                    <button class="opt-btn" data-val="music_romantic" data-lang="opt_music_romantic" onclick="selectOpt(this, 'music')">Romantik 🎻</button>
+                    <button class="opt-btn" data-val="music_pop" data-lang="opt_music_pop" onclick="selectOpt(this, 'music')">Pop 🎤</button>
+                    <button class="opt-btn" data-val="music_lofi" data-lang="opt_music_lofi" onclick="selectOpt(this, 'music')">Lofi 🎧</button>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="q-btn" data-lang="btn_continue" onclick="goStep('step-dresscode')">Davom etish →</button>
+        </div>
+    </section>
+
+    <section id="step-dresscode" class="step">
+        <div class="card">
+            <div class="step-label" data-lang="step4_label">04 / 05</div>
+            <h2 data-lang="step4_title">Kiyim tavsiyasi 👗</h2>
+            <div class="dresscode-box" id="dresscode-text">
+            </div>
+            <button class="btn-primary" data-lang="btn_great" onclick="goStep('step-confirm')">Juda yaxshi! →</button>
+        </div>
+    </section>
+
+    <section id="step-confirm" class="step">
+        <div class="card">
+            <div class="step-label" data-lang="step5_label">05 / 05</div>
+            <h2 data-lang="step5_title">Siz tayyor bo'ldingizmi?</h2>
+            <div class="summary-box" id="summary-box"></div>
+            <button class="btn-confirm" data-lang="btn_confirm" onclick="confirm()">✅ Ha, tasdiqlayman!</button>
+            <button class="btn-secondary" data-lang="btn_back" onclick="goStep('step-datetime')">← Qayta ko'rib chiqay</button>
+        </div>
+    </section>
+
+    <section id="step-final" class="step">
+        <div class="petals-bg"></div>
+        <div class="final-content">
+            <div class="checkmark-anim">🎉</div>
+            <h2 class="final-title" id="final-msg"></h2>
+            <div class="countdown-box">
+                <p class="countdown-label" data-lang="countdown_label">Uchrashuv boshlanishiga:</p>
+                <div class="countdown-grid">
+                    <div class="cnt-unit"><span id="cnt-days">00</span><small data-lang="cnt_days">kun</small></div>
+                    <div class="cnt-sep">:</div>
+                    <div class="cnt-unit"><span id="cnt-hours">00</span><small data-lang="cnt_hours">soat</small></div>
+                    <div class="cnt-sep">:</div>
+                    <div class="cnt-unit"><span id="cnt-mins">00</span><small data-lang="cnt_mins">daqiqa</small></div>
+                    <div class="cnt-sep">:</div>
+                    <div class="cnt-unit"><span id="cnt-secs">00</span><small data-lang="cnt_secs">soniya</small></div>
+                </div>
+            </div>
+            <button class="btn-surprise" data-lang="btn_surprise" onclick="openSurprise()">🎁 Surprise box — bos!</button>
+            <div id="surprise-reveal" class="surprise-reveal hidden"></div>
+        </div>
+    </section>
+
+    <script src="lang.js?v=2"></script>
+    <script src="script.js?v=2"></script>
+</body>
+
+</html>
